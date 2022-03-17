@@ -1,0 +1,98 @@
+/* for all elements */
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --hue-neutral: 200;
+    --hue-wrong: 0;
+    --hue-correct: 145;
+}
+
+/* style for the background */
+body {
+    --hue: var(--hue-neutral);
+    padding: 0;
+    margin: 0;
+    /* these together pushes the content in the middle of the screen */
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    /*-------------------------------------------------------------- */
+    background-color: hsl(var(--hue), 100%, 20%);
+}
+/* set the colour when the class label of body is correct */
+body.correct {
+    --hue: var(--hue-correct);
+    background-color: hsl(var(--hue), 100%, 35%);
+}
+/* set the colour when the class label of body is wrong */
+body.wrong {
+    --hue: var(--hue-wrong);
+    background-color: hsl(var(--hue), 70%, 50%);
+}
+
+/* style for the container */
+.container {
+    width: 800px;
+    max-width: 80%; /* such that the content does not overflow the page */
+    border-radius: 8px; /* round the corner */
+    padding: 15px; 
+    box-shadow: 0px 0px 13px 2px;
+    background-color: white;
+}
+
+/* style for the answer grid */
+.answer-grid {
+    display: grid; /* such that they are on top of each other */
+    grid-template-columns: repeat(2, auto); /* create 2 columns for the grid */
+    gap: 6px; /* split the buttons away */
+    margin: 30px 0px; /* leave space between question and answer buttons */
+}
+
+/* style for the all buttons */
+.but {
+    --hue: var(--hue-neutral);
+    border: 0.5px solid hsl(var(--hue), 10%, 80%);
+    border-radius: 3px;
+    padding: 8px 5px;
+    color: rgb(90, 76, 65);
+    outline: none;
+    background-color: hsl(var(--hue), 50%, 80%);
+}
+/* adding the hover effect to the buttons*/
+.but:hover {
+    box-shadow: 0px 0px 5px;
+}
+/* change colour when the button clicked is correct*/
+.but.correct {
+    --hue: var(--hue-correct);
+}
+/* change colour when the button clicked is wrong*/
+.but.wrong {
+    --hue: var(--hue-wrong);
+}
+
+/* style for the start and next button */
+.start-but, .next-but {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    color: rgb(90, 76, 65);
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.hide {
+    display: none;
+}
+
+

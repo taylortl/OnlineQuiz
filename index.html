@@ -1,26 +1,36 @@
-<!--place for allthe html files-->
+<!--place for all the html files-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--attach the style sheet to the html-->
+    <link href="styles.css" rel="stylesheet">
+    <!--attach the script tag to the html-->
+    <script defer src="script.js"></script>
     <title>Quiz App</title>
 </head>
 <body>
+    <!--outer white box containing all the stuff-->
     <div class="container">
+        <!--container for the question part-->
         <div id="question-container" class="hide">
+            <!--element1: the question-->
             <div id="question">Question</div>
-            <div id="answer-but" class="but-grid">
+            <!--element2: answer buttons-->
+            <div id="answer-but" class="answer-grid">
                 <button class="but">Answer 1</button>
                 <button class="but">Answer 2</button>
                 <button class="but">Answer 3</button>
                 <button class="but">Answer 4</button>
             </div>
         </div>
-
+        <!--container for the control buttons-->
         <div class="controls">
+            <!--element1: start button-->
             <button id="start-but" class="start-but but">Start</button>
+            <!--element2: next button-->
             <button id="next-but" class="next-but but hide">Next</button>
         </div>
     </div>
