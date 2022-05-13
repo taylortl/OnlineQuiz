@@ -1,0 +1,102 @@
+/* for all elements */
+*, *::before, *::after{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --hue-neutral: 200;
+    --hue-wrong: 0;
+    --hue-correct: 145;
+}
+
+h1 {
+    font-size: 3rem;
+    color: rgb(90, 76, 65);
+    margin-bottom: 1rem;
+  }
+  
+
+/* style for the background */
+body {
+    --hue: var(--hue-neutral);
+    /* these together pushes the content in the middle of the screen */
+    width: 100vw;
+    height: 100vh;
+    display: flex;           /* flex box */ 
+    justify-content: center; /* center things horizontally*/
+    align-items: center;     /* center things vertically*/
+    /*-------------------------------------------------------------- */
+    background-color: hsl(var(--hue), 100%, 20%);
+}
+
+/* style for the container */
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;           /* flex box */ 
+    justify-content: center; /* center things horizontally*/
+    align-items: center;     /* center things vertically*/
+    border-radius: 8px; /* round the corner */
+    box-shadow: 0px 0px 13px 2px;
+    background-color: white;
+    padding: 15px;
+    max-width: 80%; /* such that the content does not overflow the page */
+    margin: 0 auto;
+}
+
+.container > * {
+    width: 100%;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.center-x {
+    justify-content: center;
+}
+
+.link {
+    text-decoration: none;
+    color: rgb(90, 76, 65);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+/* style for the all buttons */
+.but {
+    --hue: var(--hue-neutral);
+    color: rgb(90, 76, 65); /* text colour */
+    background-color: hsl(var(--hue), 50%, 80%); /* frame color */
+    border: 0.5px solid hsl(var(--hue), 10%, 80%);
+    border-radius: 3px;
+    outline: none;
+    padding: 8px 5px; /* size of the button frame (from the text)*/
+    width: 20rem; /* width of the button */
+    margin-bottom: 0.4rem; /* spacing between buttons */
+}
+
+/* adding the hover effect to the buttons*/
+.but:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 5px;
+    transform: translateY(-0.1rem);
+    transition: transform 150ms;
+}
+
+/* do not display the buttons with hide class*/
+.hide {
+    display: none;
+}
+
+
+
+
