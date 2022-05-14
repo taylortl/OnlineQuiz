@@ -10,15 +10,6 @@ body.wrong {
     background-color: hsl(var(--hue), 70%, 50%);
 }
 
-/* change colour when the button clicked is correct*/
-.but.correct {
-    --hue: var(--hue-correct);
-}
-/* change colour when the button clicked is wrong*/
-.but.wrong {
-    --hue: var(--hue-wrong);
-}
-
 /* style for the answer grid */
 .question {
     font-size: 1.5rem;
@@ -27,7 +18,7 @@ body.wrong {
 }
 
 /* style for the start and next button */
-.next-but{
+.control-but{
     font-weight: bold;
     padding: 10px 20px;
     width: 5rem;
@@ -50,6 +41,15 @@ body.wrong {
     transition: transform 150ms;
 }
 
+/* change colour when the button clicked is correct*/
+.answer-container.correct {
+    --hue: var(--hue-correct);
+}
+/* change colour when the button clicked is wrong*/
+.answer-container.wrong {
+    --hue: var(--hue-wrong);
+}
+
 .choices {
     padding: 1rem 1rem;
     background-color: hsl(var(--hue), 50%, 80%);
@@ -58,8 +58,7 @@ body.wrong {
 }
 
 .answers {
-    padding: 0.5rem;
-    
+    padding: 0.5rem; 
   }
 
 

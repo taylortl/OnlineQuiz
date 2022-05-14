@@ -16,25 +16,28 @@
             <!--element1: the question-->
             <div id="question" class="question">Question?</div>
             <!--element2: answer buttons-->
-            <div class="answer-container">
+            <div class="answer-container" data-number="0">
                 <p class="choices">A</p>
-                <p class="answers" data-number="1">Answer 1</p>
+                <p class="answers">Answer 1</p>
             </div>
-            <div class="answer-container">
+            <div class="answer-container" data-number="1">
                 <p class="choices">B</p>
-                <p class="answers" data-number="2">Answer 2</p>
+                <p class="answers" >Answer 2</p>
             </div>
-            <div class="answer-container">
+            <div class="answer-container" data-number="2">
                 <p class="choices">C</p>
-                <p class="answers" data-number="3">Answer 3</p>
+                <p class="answers" >Answer 3</p>
             </div>
-            <div class="answer-container">
+            <div class="answer-container" data-number="3">
                 <p class="choices">D</p>
-                <p class="answers" data-number="4">Answer 4</p>
+                <p class="answers">Answer 4</p>
             </div>
         
             <!--container for the control buttons-->
-            <button id="next-but" class="next-but but hide">Next</button>
+            <div class="control-container">
+                <button id="next-but" class="control-but but">Next</button>
+                <button id="confirm-but" class="control-but but hide">Confirm</button>
+             </div>
     </div>
 </body>
 </html>

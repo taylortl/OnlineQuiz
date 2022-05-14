@@ -1,8 +1,8 @@
 const question = document.getElementById('question')
-const answers = Array.from(document.getElementsByClassName('answers'))
+const answers = Array.from(document.getElementsByClassName('answer-container'))
 
 let currentQuestion = {}
-let question_shown = false
+let ready_ans = false
 let score = 0
 let questionShown = 0
 let unanswered_quest = []
@@ -40,14 +40,7 @@ let questions = [
 const CORRECT = 10
 const MAX_QUEST = 3
 
-function startQuiz() {
-    questionShown = 0
-    score = 0
-    unanswered_quest = [...questions] /* spread opeator: make a copy of the array */
-    getQuestion()
-}
-
-function getQuestion() {
+function nextQuestion() {
     if (unanswered_quest.length == 0 || questionShown >= MAX_QUEST)
         return window.location.assign('/end.html')
     
@@ -59,13 +52,62 @@ function getQuestion() {
 
     /* show the choices for the question */
     answers.forEach((ans) => {
-        ans.innerText = currentQuestion.answers[ans.dataset['number'] - 1].text
+        ans.lastElementChild.innerText = currentQuestion.answers[ans.dataset['number']].text
     })
 
     /* delete the shown question from the array */
     unanswered_quest.splice(index, 1)
-    question_shown = true
+    ready_ans = true
 
+}
+
+function addListenerToAnswers(ans) {
+    ans.addEventListener('click', (event) => {
+        if (!ready_ans)
+            return
+        ready_ans = false
+
+        let selected_element = event.target
+        if (!selected_element.classList.contains('answer-container'))
+            selected_element = selected_element.parentElement
+
+        const selected_ans = selected_element.dataset['number']
+        if (currentQuestion.answers[selected_ans].correct){
+            event.target.classList.add('correct')
+            document.body.classList.add('correct')
+        } else {
+            event.target.classList.add('wrong')
+            document.body.classList.add('wrong')
+        }
+        nextQuestion()
+    })
+} 
+
+function addListenerToNext(ans) {
+    ans.addEventListener('click', (event) => {
+        if (!ready_ans)
+            return
+        ready_ans = false
+
+        const selected_ans = event.target.dataset['number']
+        if (currentQuestion.answers[selected_ans].correct){
+            event.target.classList.add('correct')
+            document.body.classList.add('correct')
+        } else {
+            event.target.classList.add('wrong')
+            document.body.classList.add('wrong')
+        }
+        nextQuestion()
+    })
+} 
+
+
+function startQuiz() {
+    questionShown = 0
+    score = 0
+    unanswered_quest = [...questions] /* spread opeator: make a copy of the array */
+    nextQuestion()
+    answers.forEach(addListenerToAnswers)
 }
 
 startQuiz()
