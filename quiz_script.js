@@ -88,7 +88,7 @@ function updateProgess(number) {
 function nextQuestion() {
     // check if end quiz 
     if (unanswered_quest.length == 0 || questionShown >= MAX_QUEST)
-        return window.location.assign('/end.html');
+        return window.location.assign('/end_quiz.html');
     
     // show a random question 
     const index = Math.floor(Math.random() * unanswered_quest.length);
@@ -123,7 +123,7 @@ function addListenerToAnswer(ans) {
         
         let selected_element = event.target;
 
-        // the user can click on the letters / button / text
+        // the user can click on the button / span
         // this assert we are dealing with the button
         if (!selected_element.classList.contains('answer-but'))
             selected_element = selected_element.parentElement;

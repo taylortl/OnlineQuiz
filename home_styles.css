@@ -58,6 +58,8 @@ body {
     color: rgb(90, 76, 65);
     font-size: 1.5rem;
     font-weight: bold;
+    text-align: center;
+    padding: 7px;
 }
 /* style for the all buttons */
 .but {
@@ -65,10 +67,10 @@ body {
     color: rgb(90, 76, 65); /* text colour */
     background-color: hsl(var(--hue), 50%, 80%); /* frame color */
     border: 0.5px solid hsl(var(--hue), 10%, 80%);
-    border-radius: 3px;
+    border-radius: 4px;
     outline: none;
     width: 20rem; /* width of the button */
-    margin-bottom: 0.5rem; /* spacing between buttons */
+    margin-bottom: 0.3rem; /* spacing between buttons */
 }
 
 /* adding the hover effect to the buttons*/
