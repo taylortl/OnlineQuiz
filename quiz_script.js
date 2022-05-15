@@ -2,6 +2,9 @@
 const question = document.getElementById('question');
 const answers = Array.from(document.getElementsByClassName('answer-but'));
 const next = document.getElementById('next-but');
+const counter = document.getElementById('quest-counter');
+const progress = document.getElementById('progress');
+
 
 // declare variables
 let currentQuestion = {};
@@ -73,6 +76,15 @@ let questions = [
 const CORRECT = 10;
 const MAX_QUEST = 6;
 
+function setcounter(number) {
+    counter.innerText = 'Question ' + number + '/' + MAX_QUEST;
+}
+
+function updateProgess(number) {
+    percentage = (number / MAX_QUEST) * 100;
+    progress.style.width = percentage + '%';
+}
+
 function nextQuestion() {
     // check if end quiz 
     if (unanswered_quest.length == 0 || questionShown >= MAX_QUEST)
@@ -86,6 +98,10 @@ function nextQuestion() {
     // set values for flags
     questionAnswered = false;
     questionShown++;
+
+    // update info section
+    setcounter(questionShown);
+    updateProgess(questionShown);
 
     // show the choices for the question 
     answers.forEach((ans) => {
@@ -114,9 +130,11 @@ function addListenerToAnswer(ans) {
 
         // get the data-number of the button
         const selected_ans = selected_element.dataset['number'];
-        let classToAdd = 'wrong'
-        if (currentQuestion.answers[selected_ans].correct)
-            classToAdd = 'correct'
+        let classToAdd = 'wrong';
+        if (currentQuestion.answers[selected_ans].correct){
+            classToAdd = 'correct';
+            score += CORRECT;
+        }
     
         // change the theme 
         selected_element.classList.add(classToAdd);
@@ -153,8 +171,8 @@ function eventForNext() {
     nextQuestion();
 } 
 
-
 function startQuiz() {
+    score = 0;
     unanswered_quest = [...questions]; /* spread opeator: make a copy of the array */
     nextQuestion();
     answers.forEach(addListenerToAnswer);
