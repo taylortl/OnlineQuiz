@@ -88,7 +88,7 @@ function updateProgess(number) {
 function nextQuestion() {
     // check if end quiz 
     if (unanswered_quest.length == 0 || questionShown >= MAX_QUEST)
-        return window.location.assign('/end_quiz.html');
+        return window.location.assign('/result.html');
     
     // show a random question 
     const index = Math.floor(Math.random() * unanswered_quest.length);

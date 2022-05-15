@@ -63,10 +63,9 @@ body {
 }
 /* style for the all buttons */
 .but {
-    --hue: var(--hue-neutral);
     color: rgb(90, 76, 65); /* text colour */
-    background-color: hsl(var(--hue), 50%, 80%); /* frame color */
-    border: 0.5px solid hsl(var(--hue), 10%, 80%);
+    background-color: hsl(var(--hue-neutral), 50%, 80%); /* frame color */
+    border: 0.5px solid hsl(var(--hue-neutral), 10%, 80%);
     border-radius: 4px;
     outline: none;
     width: 20rem; /* width of the button */

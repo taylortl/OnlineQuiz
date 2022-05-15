@@ -1,0 +1,13 @@
+
+.input-box {
+    padding: 1rem;
+    font-size: 1rem;
+    text-align: center;
+    border: 0.5px solid hsl(var(--hue-neutral), 10%, 80%);
+    border-radius: 4px;
+    margin-top: 0.8rem;
+}
+
+.controls-container > * {
+    margin-bottom: 0.4rem;
+}
