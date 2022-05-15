@@ -5,35 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz App - Start Quiz</title>
+    <!--attach the style sheets-->
     <link href="home_styles.css" rel="stylesheet">
     <link href="quiz_styles.css" rel="stylesheet">
-    <!--attach the script tag to the html-->
+    <!--attach the script-->
     <script defer src="quiz_script.js"></script>
 </head>
 <body>
     <div class="container">
         <div id="quiz" class="center-x flex-column">
-            <!--element1: the question-->
+            <!--quiz info and progress-->
+            <div id="info">
+                
+            </div>
+
+            <!--question-->
             <div id="question" class="question">Question?</div>
-            <!--element2: answer buttons-->
-            <button class="but answer-but" data-number="0">
+
+            <!--choices-->
+            <button class="but answer-but but" data-number="0">
                 <p class="choices">A</p>
                 <p class="answers">Answer 1</p>
             </button>
-            <button class="but answer-but" data-number="1">
+            <button class="but answer-but but" data-number="1">
                 <p class="choices">B</p>
                 <p class="answers" >Answer 2</p>
             </button>
-            <button class="but answer-but" data-number="2">
+            <button class="but answer-but but" data-number="2">
                 <p class="choices">C</p>
                 <p class="answers" >Answer 3</p>
             </button>
-            <button class="but answer-but" data-number="3">
+            <button class="but answer-but but" data-number="3">
                 <p class="choices">D</p>
                 <p class="answers">Answer 4</p>
             </button>
         
-            <!--container for the control buttons-->
+            <!--control buttons-->
             <div class="control-container">
                 <button id="next-but" class="control-but but">Next</button>
                 <button id="confirm-but" class="control-but but hide">Confirm</button>
