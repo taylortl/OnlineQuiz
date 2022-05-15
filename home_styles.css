@@ -79,7 +79,6 @@ body {
     border: 0.5px solid hsl(var(--hue), 10%, 80%);
     border-radius: 3px;
     outline: none;
-    padding: 8px 5px; /* size of the button frame (from the text)*/
     width: 20rem; /* width of the button */
     margin-bottom: 0.4rem; /* spacing between buttons */
 }
