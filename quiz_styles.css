@@ -23,9 +23,10 @@ body.wrong {
     padding: 10px 20px;
     width: 5rem;
     color: rgb(90, 76, 65);
+    float: right;
 }
 
-.answer-container {
+.answer-but {
     display: flex;
     margin-bottom: 0.5rem;
     width: 100%;
@@ -34,7 +35,7 @@ body.wrong {
     border: 0.5px solid hsl(var(--hue), 10%, 80%);
 }
 
-.answer-container:hover {
+.answer-but:hover {
     cursor: pointer;
     box-shadow: 0px 0px 5px;
     transform: translateY(-0.1rem);
@@ -42,11 +43,11 @@ body.wrong {
 }
 
 /* change colour when the button clicked is correct*/
-.answer-container.correct {
+.correct {
     --hue: var(--hue-correct);
 }
 /* change colour when the button clicked is wrong*/
-.answer-container.wrong {
+.wrong {
     --hue: var(--hue-wrong);
 }
 
