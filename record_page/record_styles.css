@@ -1,0 +1,21 @@
+.column1 {
+    flex: 50%;
+    margin-right: 30px;
+}
+
+.column2 {
+    flex: 50%;
+    margin-left: 40px;
+}
+
+.title {
+    text-decoration: underline;
+    font-size: 2.3rem;
+}
+
+.list-items {
+    list-style: none;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+  

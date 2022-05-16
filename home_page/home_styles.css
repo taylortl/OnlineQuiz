@@ -69,7 +69,7 @@ body {
     border: 0.5px solid hsl(var(--hue), 10%, 80%);
     border-radius: 4px;
     outline: none;
-    width: 20rem; /* width of the button */
+    width: 50%; /* width of the button */
     margin-bottom: 0.3rem; /* spacing between buttons */
 }
 

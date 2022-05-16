@@ -10,4 +10,5 @@
 
 .controls-container > * {
     margin-bottom: 0.4rem;
+    width: 100%
 }
