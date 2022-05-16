@@ -16,6 +16,7 @@ function deleteExpiredRecord() {
     localStorage.setItem('record', JSON.stringify(record));
 }
 
+
 function saveResult() {
     const today = new Date();
     const result = {
@@ -28,6 +29,20 @@ function saveResult() {
     save.classList.add('hide');
 }
 
+function saveTenResult() {
+    const result = {
+        score: quiz_score,
+        name: username.value,
+    };
+    record.push(result);
+    if (Object.keys(record).length > 10) {
+        record.splice(0, Object.keys(record).length - 10);
+    }
+    localStorage.setItem('record', JSON.stringify(record));
+    
+    save.classList.add('hide');
+}
+
 function init() {
     // unlock the save button if username is typed
     username.addEventListener('keyup', () => {
@@ -37,7 +52,7 @@ function init() {
     // get the score of the quiz
     score.innerText = quiz_score;
     deleteExpiredRecord();
-    save.addEventListener('click', saveResult);
+    save.addEventListener('click', saveTenResult);
     
 }
 
