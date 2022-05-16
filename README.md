@@ -13,7 +13,7 @@ At this Stage, the questions are all fetched and selected from Open Trivia Datab
 - CSS 
 
 ***Reference*** \
-loading animation: https://www.freecodecamp.org/news/how-to-create-a-css-only-loader/ 
+Loading animation: https://www.freecodecamp.org/news/how-to-create-a-css-only-loader/ 
 
 Quiz Questions: https://opentdb.com/api_config.php\
 
