@@ -3,7 +3,7 @@
 ***About this application*** \
 This is an online quiz application for my tutoring part time. The questions are multiple choices selected from Open Trivia Database.
 
-***Implemented Using:*** \
+***Implemented Using:*** 
 - HTML
 - JavaScript
 - CSS 
