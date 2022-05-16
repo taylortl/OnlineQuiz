@@ -40,6 +40,7 @@ function saveTenResult() {
         score: quiz_score,
         name: username.value,
     };
+    
     record.push(result);
 
     if (Object.keys(record).length > 10) {

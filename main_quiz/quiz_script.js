@@ -66,7 +66,6 @@ function addListenerToAnswer(ans) {
         if (!ready_ans)
             return;
 
-        
         let selected_element = event.target;
 
         // the user can click on the button / span
@@ -123,6 +122,8 @@ function startQuiz() {
 }
 
 function getOnlineQuestion(loaded_quest) {
+    // the questions in Open Trivia Database is coded in HTML
+    // these lines change some html codes to usual string
     let refined_quest = loaded_quest.question.replaceAll('&quot;', '"');
     refined_quest = refined_quest.replaceAll('&#039;', "'");
     const question = {
@@ -130,6 +131,7 @@ function getOnlineQuestion(loaded_quest) {
         answers: []
     };
 
+    // load answers 
     const loaded_answers = [...loaded_quest.incorrect_answers];
     const correct_index = Math.floor(Math.random() * 4);
     loaded_answers.splice(correct_index, 0, loaded_quest.correct_answer);
@@ -153,6 +155,7 @@ function getOnlineQuestion(loaded_quest) {
     return question;
 } 
 
+// fetch questions from the api and start the quiz
 fetch("https://opentdb.com/api.php?amount=20&category=19&type=multiple")
 .then(response => response.json())
 .then((load_quests) => {
