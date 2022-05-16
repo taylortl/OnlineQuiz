@@ -9,8 +9,7 @@ const progress = document.getElementById('progress');
 // declare variables
 let currentQuestion = {};
 let ready_ans = false;
-let questionAnswered = false;
-let score = 0;
+let quiz_score = 0;
 let questionShown = 0;
 let unanswered_quest = [];
 let questions = [
@@ -87,8 +86,11 @@ function updateProgess(number) {
 
 function nextQuestion() {
     // check if end quiz 
-    if (unanswered_quest.length == 0 || questionShown >= MAX_QUEST)
+    if (unanswered_quest.length == 0 || questionShown >= MAX_QUEST){
+        quiz_score = parseInt((quiz_score / (MAX_QUEST * 10)) * 100);
+        localStorage.setItem('score', quiz_score);
         return window.location.assign('/result.html');
+    } 
     
     // show a random question 
     const index = Math.floor(Math.random() * unanswered_quest.length);
@@ -96,7 +98,7 @@ function nextQuestion() {
     question.innerText = currentQuestion.question;
     
     // set values for flags
-    questionAnswered = false;
+    next.disabled = true;
     questionShown++;
 
     // update info section
@@ -133,7 +135,7 @@ function addListenerToAnswer(ans) {
         let classToAdd = 'wrong';
         if (currentQuestion.answers[selected_ans].correct){
             classToAdd = 'correct';
-            score += CORRECT;
+            quiz_score += CORRECT;
         }
     
         // change the theme 
@@ -141,7 +143,7 @@ function addListenerToAnswer(ans) {
         document.body.classList.add(classToAdd);
 
         // set values for flags
-        questionAnswered = true;
+        next.disabled = false;
         ready_ans = false;
     });
 } 
@@ -152,12 +154,7 @@ function removeClass(element, cls) {
 }
 
 function eventForNext() {
-    // don't react if question is not answered
-    if (!questionAnswered) {
-        alert("Question Not Answered");
-        return;
-    }
-    
+
     // remove themes
     answers.forEach((ans) => {
         removeClass(ans, 'correct');
@@ -172,7 +169,7 @@ function eventForNext() {
 } 
 
 function startQuiz() {
-    score = 0;
+    quiz_score = 0;
     unanswered_quest = [...questions]; /* spread opeator: make a copy of the array */
     nextQuestion();
     answers.forEach(addListenerToAnswer);

@@ -17,8 +17,8 @@ body.wrong {
     margin-bottom: 1rem;
 }
 
-/* style for the control buttons (next and confirm)*/
-.control-but{
+/* style for the control buttons */
+.next-but{
     font-weight: bold;
     padding: 10px 20px;
     width: 5rem;
@@ -56,22 +56,26 @@ body.wrong {
     padding: 0.5rem; 
 }
 
+/* style for the info section */
 .info-container {
     margin-bottom: 1.5rem;
 }
 
+/* style for text in info section */
 .info {
     font-size: 1.1rem;
     font-weight: bold;
     color: rgb(90, 76, 65);
 }
 
+/* style for the progress bar */
 #progress-bar {
     height: 1rem;
     border: 0.25rem solid hsl(var(--hue-neutral), 50%, 70%);
     border-radius: 15px;
 }
   
+/* style for the inner side of progress bar*/
 #progress {
     height: 0.7rem;
     background-color: hsl(var(--hue-neutral), 50%, 70%);
