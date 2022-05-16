@@ -41,6 +41,7 @@ function saveTenResult() {
         name: username.value,
     };
     record.push(result);
+
     if (Object.keys(record).length > 10) {
         record.splice(0, Object.keys(record).length - 10);
     }
