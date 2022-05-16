@@ -123,8 +123,10 @@ function startQuiz() {
 }
 
 function getOnlineQuestion(loaded_quest) {
+    let refined_quest = loaded_quest.question.replaceAll('&quot;', '"');
+    refined_quest = refined_quest.replaceAll('&#039;', "'");
     const question = {
-        question: loaded_quest.question,
+        question: refined_quest,
         answers: []
     };
 
@@ -135,8 +137,10 @@ function getOnlineQuestion(loaded_quest) {
     const answers = [];
     
     loaded_answers.forEach((ans, index) => {
+        let refined_ans = ans.replaceAll('&quot;', '"');
+        refined_ans = refined_ans.replaceAll('&#039;', "'");
         const choice = {
-            text: ans,
+            text: refined_ans,
             correct: false
         };
 

@@ -5,10 +5,11 @@ const username = document.getElementById('user');
 const display = document.getElementById('display');
 const loader = document.getElementById('loader');
 
-
 // get item from local storage
 const quiz_score = localStorage.getItem('score');
 const record = JSON.parse(localStorage.getItem('record')) || [];
+
+/*  For 3 months storage
 
 function deleteExpiredRecord() {
     for (var i = 0 ; i < Object.keys(record).length ; i++) {
@@ -18,7 +19,6 @@ function deleteExpiredRecord() {
     }
     localStorage.setItem('record', JSON.stringify(record));
 }
-
 
 function saveResult() {
     const today = new Date();
@@ -32,6 +32,9 @@ function saveResult() {
     save.classList.add('hide');
 }
 
+*/
+
+/* 10 users storage */
 function saveTenResult() {
     const result = {
         score: quiz_score,
@@ -44,6 +47,7 @@ function saveTenResult() {
     localStorage.setItem('record', JSON.stringify(record));
     
     save.classList.add('hide');
+    username.classList.add('hide');
 }
 
 function init() {
@@ -54,7 +58,6 @@ function init() {
     
     // get the score of the quiz
     score.innerText = quiz_score;
-    deleteExpiredRecord();
     save.addEventListener('click', saveTenResult);
     display.classList.remove('hide');
     loader.classList.add('hide');
