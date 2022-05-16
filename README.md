@@ -1,7 +1,9 @@
 # Online Quiz Application
 
 ***About this application*** \
-This is an online quiz application for my tutoring part time. The questions are multiple choices selected from Open Trivia Database.
+This is an online quiz application for my tutoring part time. I found marking the practice tests time consuming, so I intented to create an application for me to upload questions and my students can practise as much as they want. 
+
+At this Stage, the questions are all fetched and selected from Open Trivia Database. I will be implementing a tutor-side of the quiz app, which allows tutor to input their desired questions and the student-side can be updated with the lastest practices.
 
 ***Implemented Using:*** 
 - HTML
