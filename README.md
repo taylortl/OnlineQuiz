@@ -15,8 +15,7 @@ https://taylortl.github.io/OnlineQuiz/index.html \
 - CSS 
 
 ## Reference
-Loading animation: https://www.freecodecamp.org/news/how-to-create-a-css-only-loader/ 
-
-Quiz Questions: https://opentdb.com/api_config.php\
+Loading animation: https://www.freecodecamp.org/news/how-to-create-a-css-only-loader/ \
+Quiz Questions: https://opentdb.com/api_config.php
 
 
