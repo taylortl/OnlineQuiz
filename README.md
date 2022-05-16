@@ -7,6 +7,7 @@ At this Stage, the questions are all fetched and selected from Open Trivia Datab
 
 ## Hosted Website on GitHub
 https://taylortl.github.io/OnlineQuiz/index.html
+<img width="278" alt="image" src="https://user-images.githubusercontent.com/91409130/168538504-1d7dce58-ccca-4021-9bd1-22d5d1c04ee1.png">
 
 ## Implemented Using:
 - HTML
