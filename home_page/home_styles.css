@@ -20,6 +20,12 @@ h1 {
     margin-bottom: 1rem;
 }
 
+.logo {
+    width: 30px;
+    margin-top: 0.5rem;
+
+}
+
 /* style for the background */
 body {
     --hue: var(--hue-neutral);
