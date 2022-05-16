@@ -13,68 +13,11 @@ let ready_ans = false;
 let quiz_score = 0;
 let questionShown = 0;
 let unanswered_quest = [];
-let questions = [
-    {
-        question: 'What is 2 + 2?', 
-        answers: [
-            {text: '6', correct: false},
-            {text: '22', correct: false},
-            {text: '45', correct: false},
-            {text: '4', correct: true},
-        ]
-    },
-    {
-        question: 'Inside which HTML element do we put the JavaScript??',
-        answers: [
-            {text: '<script>', correct: true},
-            {text: '<javascript>', correct: false},
-            {text: '<js>', correct: false},
-            {text: '<scripting>', correct: false},
-        ]
-    },
-    {
-        question: " How do you write 'Hello World' in an alert box?",
-        answers: [
-            {text: "msgBox('Hello World');", correct: false},
-            {text: "alertBox('Hello World';", correct: false},
-            {text: "msg('Hello World');", correct: false},
-            {text: "alert('Hello World');", correct: true},
-        ]
-
-    },
-    {
-        question: 'What is 2 + 2?', 
-        answers: [
-            {text: '6', correct: false},
-            {text: '22', correct: false},
-            {text: '45', correct: false},
-            {text: '4', correct: true},
-        ]
-    },
-    {
-        question: 'Inside which HTML element do we put the JavaScript??',
-        answers: [
-            {text: '<script>', correct: true},
-            {text: '<javascript>', correct: false},
-            {text: '<js>', correct: false},
-            {text: '<scripting>', correct: false},
-        ]
-    },
-    {
-        question: " How do you write 'Hello World' in an alert box?",
-        answers: [
-            {text: "msgBox('Hello World');", correct: false},
-            {text: "alertBox('Hello World';", correct: false},
-            {text: "msg('Hello World');", correct: false},
-            {text: "alert('Hello World');", correct: true},
-        ]
-
-    }
-];
+let questions = [];
 
 // declare constant
 const CORRECT = 10;
-const MAX_QUEST = 6;
+const MAX_QUEST = 10;
 
 function setcounter(number) {
     counter.innerText = 'Question ' + number + '/' + MAX_QUEST;
@@ -179,4 +122,39 @@ function startQuiz() {
     loader.classList.add('hide');
 }
 
-startQuiz();
+function getOnlineQuestion(loaded_quest) {
+    const question = {
+        question: loaded_quest.question,
+        answers: []
+    };
+
+    const loaded_answers = [...loaded_quest.incorrect_answers];
+    const correct_index = Math.floor(Math.random() * 4);
+    loaded_answers.splice(correct_index, 0, loaded_quest.correct_answer);
+
+    const answers = [];
+    
+    loaded_answers.forEach((ans, index) => {
+        const choice = {
+            text: ans,
+            correct: false
+        };
+
+        if (index == correct_index) {
+            choice['correct'] = true;
+        }
+        answers.push(choice);
+    })
+    question['answers'] = answers;
+    return question;
+} 
+
+fetch("https://opentdb.com/api.php?amount=20&category=19&type=multiple")
+.then(response => response.json())
+.then((load_quests) => {
+    questions = load_quests.results.map(getOnlineQuestion);
+    startQuiz();
+})
+.catch((e) => {
+    console.error(e);
+})
