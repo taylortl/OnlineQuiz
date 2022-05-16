@@ -2,6 +2,9 @@
 const save = document.getElementById('save-but');
 const score = document.getElementById('score');
 const username = document.getElementById('user');
+const display = document.getElementById('display');
+const loader = document.getElementById('loader');
+
 
 // get item from local storage
 const quiz_score = localStorage.getItem('score');
@@ -53,7 +56,8 @@ function init() {
     score.innerText = quiz_score;
     deleteExpiredRecord();
     save.addEventListener('click', saveTenResult);
-    
+    display.classList.remove('hide');
+    loader.classList.add('hide');
 }
 
 init();

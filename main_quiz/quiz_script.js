@@ -4,7 +4,8 @@ const answers = Array.from(document.getElementsByClassName('answer-but'));
 const next = document.getElementById('next-but');
 const counter = document.getElementById('quest-counter');
 const progress = document.getElementById('progress');
-
+const quiz = document.getElementById('quiz');
+const loader = document.getElementById('loader');
 
 // declare variables
 let currentQuestion = {};
@@ -174,6 +175,8 @@ function startQuiz() {
     nextQuestion();
     answers.forEach(addListenerToAnswer);
     next.addEventListener('click', eventForNext);
+    quiz.classList.remove('hide');
+    loader.classList.add('hide');
 }
 
 startQuiz();
