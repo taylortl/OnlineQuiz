@@ -25,6 +25,7 @@ function saveResult() {
     };
     record.push(result);
     localStorage.setItem('record', JSON.stringify(record));
+    save.classList.add('hide');
 }
 
 function init() {
@@ -32,7 +33,7 @@ function init() {
     username.addEventListener('keyup', () => {
         save.disabled = !username.value;
     })
-
+    
     // get the score of the quiz
     score.innerText = quiz_score;
     deleteExpiredRecord();

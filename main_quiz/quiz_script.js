@@ -89,7 +89,7 @@ function nextQuestion() {
     if (unanswered_quest.length == 0 || questionShown >= MAX_QUEST){
         quiz_score = parseInt((quiz_score / (MAX_QUEST * 10)) * 100);
         localStorage.setItem('score', quiz_score);
-        return window.location.assign('/result.html');
+        return window.location.assign('/result_page/result.html');
     } 
     
     // show a random question 
