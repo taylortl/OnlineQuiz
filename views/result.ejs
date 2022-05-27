@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <!--attach the style sheets-->
+    <link href="/css/home_styles.css" rel="stylesheet">
+    <link href="/css/result_styles.css" rel="stylesheet">
+     <!--attach the script-->
+     <script defer src="/js/result_script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- loading page -->
+        <div id="loader" class="loader-container">
+            <div class="loader"></div>
+        </div>
+        
+        <div id="display" class="hide flex-center flex-column">
+            <h1>Final Score</h1>
+            <h1 id="score">100</h1>
+
+            <div class="controls-container  flex-center flex-column">
+                <input 
+                    id="user"
+                    class="input-box" 
+                    type="text"  
+                    placeholder="type in your name"
+                />
+                <button id="save-but" class="link but" disabled>Save</button>
+                <a class="link but" href="/">Home</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
