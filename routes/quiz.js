@@ -2,6 +2,8 @@ const express = require('express');
 const db = require('./database/mysql');
 const router = express.Router();
 
+
+
 /* GET for quiz/user_id/random_id (first in and next button click) */ 
 router.get("/:user_id/:ques_id", async (req, res) => {
   // get question with given id = random_id
@@ -13,6 +15,13 @@ router.get("/:user_id/:ques_id", async (req, res) => {
   // pass to client  
   res.json({question: question, choices : choices});
 })
+
+router.get("/", async (req, res) => {
+  let query = 'select COUNT(*) from questions;';
+  let ques_len = execute_query(query);
+  res.json({len : ques_len});
+})
+
  
 /* POST for  quiz/user_id/random_id (choices click) */
 router.post("/:user_id/:ques_id", async (req, res) => {
@@ -27,8 +36,7 @@ router.post("/:user_id/:ques_id", async (req, res) => {
   await execute_query(query);
   // get the new random_id (pass from request query)
   // redirect to quiz/user_id/new_random_id
-  res.redirect(`/${req.params.user_id}/${req.params.ques_id}`);
-  
+  res.redirect(`/${req.params.user_id}/${req.query.random_id}`);
 })
 
 
