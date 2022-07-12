@@ -19,9 +19,8 @@ let unanswered_quest = []; // id of the unasnwered questions
 const CORRECT = 10;
 const MAX_QUEST = 10;
 
-fetch('/quiz')
-.then(response => response.json())
-.then(data => {
+fetch('./quiz')
+.then(response => {
   console.log('Success:', data);
 })
 .catch((error) => {

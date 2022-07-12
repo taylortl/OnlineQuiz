@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App - Start Quiz</title>
+    <!--attach the style sheets-->
+    <link type="text/css" href="/css/home_styles.css" rel="stylesheet">
+    <link type="text/css" href="/css/quiz_styles.css" rel="stylesheet">
+    <!--attach the script-->
+    <script defer src="/js/quiz_script_rest.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- loading page -->
+        <div id="loader" class="loader-container">
+            <div class="loader"></div>
+        </div>
+
+        <div id="quiz" class="hide center-x flex-column">
+            <!--quiz info and progress-->
+            <div class="info-container">
+                <p id="quest-counter" class="info"></p>
+                <div id="progress-bar">
+                    <div id="progress"></div>
+                </div>
+            </div>
+
+            <!--question-->
+            <div id="question" class="question">Question?</div>
+
+            <!--choices-->
+            <button class="but answer-but" data-number="0">
+                <span class="choices">A</span>
+                <span class="answers">Answer 1</span>
+            </button>
+            <button class="but answer-but" data-number="1">
+                <span class="choices">B</span>
+                <span class="answers" >Answer 2</span>
+            </button>
+            <button class="but answer-but" data-number="2">
+                <span class="choices">C</span>
+                <span class="answers" >Answer 3</span>
+            </button>
+            <button class="but answer-but" data-number="3">
+                <span class="choices">D</span>
+                <span class="answers">Answer 4</span>
+            </button>
+        
+            <!--control buttons-->
+            <div class="control-container">
+                <button id="next-but" class="next-but but">Next</button>
+             </div>
+    </div>
+</body>
+</html>

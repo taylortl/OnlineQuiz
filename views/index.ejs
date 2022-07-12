@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz App</title>
     <!--attach the style sheet-->
-    <link href="/css/home_styles.css" rel="stylesheet">
+    <link type="text/css" href="/css/home_styles.css" rel="stylesheet">
+    <link type="text/css" href="/css/quiz_styles.css" rel="stylesheet">
+    <!--attach the script-->
+    <script defer src="/js/quiz_script_rest.js"></script>
 </head>
 <body>
     <!--outer white box containing all the stuff-->
@@ -14,10 +17,10 @@
         <!--home page-->
         <div id="home" class="flex-center flex-column">
             <h1>Quiz App</h1>
-            <a class="link but" href="../public/html/quiz.html">Start Quiz</a>
-            <a class="link but" href="/record">Record</a>
+            <button class="link but"  onclick="window.location.href = './quiz';" >Start Quiz</button>
+            <button class="link but" onclick="window.location.href = './get_record';">Record</button>
             <a target="_blank" href="https://github.com/taylortl/OnlineQuiz">
-                <img class="logo" src="/img/GitHub-Mark-120px-plus.png" alt="my git hub">
+                <img class="logo" type="text/img" src="/img/GitHub-Mark-120px-plus.png" alt="my git hub">
             </a>
         </div>
     </div>
