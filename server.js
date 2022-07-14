@@ -1,12 +1,10 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const db = require('./routes/database/mysql.js');
 const quizRouter = require('./routes/quiz');
 const resultRouter = require('./routes/result');
 const recordRouter = require('./routes/record');
 
-db.connectDB()
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

@@ -7,6 +7,7 @@ const progress = document.getElementById('progress');
 const quiz = document.getElementById('quiz');
 const loader = document.getElementById('loader');
 const data = { username: 'example' };
+const numQuest = document.getElementById('count');
 
 // declare variables
 let currentQuestion = {}; // current question json object
@@ -19,15 +20,15 @@ let unanswered_quest = []; // id of the unasnwered questions
 const CORRECT = 10;
 const MAX_QUEST = 10;
 
-fetch('./quiz')
-.then(response => {
-  console.log('Success:', data);
-})
-.catch((error) => {
-  console.error('Error:', error);
-});
+// fetch('./quiz')
+// .then(response => {
+//   console.log('Success:', response);
+// })
+// .catch((error) => {
+//   console.error('Error:', error);
+// });
 
-
+console.log(numQuest.innerText);
 
 
 // function setcounter(number) {
