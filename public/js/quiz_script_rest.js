@@ -6,19 +6,29 @@ const counter = document.getElementById('quest-counter');
 const progress = document.getElementById('progress');
 const quiz = document.getElementById('quiz');
 const loader = document.getElementById('loader');
-const data = { username: 'example' };
 const numQuest = document.getElementById('count');
-
-// declare variables
-let currentQuestion = {}; // current question json object
-let ready_ans = false; // flag to block user press "next" button 
-let quiz_score = 0; // score of the user 
-let questionShown = 0; // keep track of the question shown (cannot be larger than MAX_QUEST)
-let unanswered_quest = []; // id of the unasnwered questions
 
 // declare constant
 const CORRECT = 10;
 const MAX_QUEST = 10;
+const num_question = parseInt(numQuest.innerText);
+
+// declare variables
+let currentQuestion = null; // current question number
+let ready_ans = false; // flag to block user press "next" button 
+let quiz_score = 0; // score of the user 
+let questionShown = 0; // keep track of the question shown (cannot be larger than MAX_QUEST)
+let unanswered_quest = [...Array(num_question).keys()]; // id of the unasnwered questions
+
+
+// function startQuiz() {
+//     quiz_score = 0;
+//     nextQuestion();
+//     answers.forEach(addListenerToAnswer);
+//     next.addEventListener('click', eventForNext);
+//     quiz.classList.remove('hide');
+//     loader.classList.add('hide');
+// }
 
 // fetch('./quiz')
 // .then(response => {
@@ -28,7 +38,6 @@ const MAX_QUEST = 10;
 //   console.error('Error:', error);
 // });
 
-console.log(numQuest.innerText);
 
 
 // function setcounter(number) {
@@ -40,38 +49,55 @@ console.log(numQuest.innerText);
 //     progress.style.width = percentage + '%';
 // }
 
-// function nextQuestion() {
-//     // check if end quiz 
-//     if (unanswered_quest.length == 0 || questionShown >= MAX_QUEST){
-//         quiz_score = parseInt((quiz_score / (MAX_QUEST * 10)) * 100);
-//         localStorage.setItem('score', quiz_score);
-//         // replace with fetch result 
-//         return window.location.assign('../result_page/result.html');
-//     } 
+function nextQuestion() {
+    // check if end quiz 
+    if (unanswered_quest.length == 0 || questionShown >= MAX_QUEST){
+        quiz_score = parseInt((quiz_score / (MAX_QUEST * 10)) * 100);
+        // save the quiz score of the user 
+        localStorage.setItem('score', quiz_score);
+        // replace with fetch result 
+        return window.location.assign('../result_page/result.html');
+    } 
     
-//     // show a random question 
-//     const index = Math.floor(Math.random() * unanswered_quest.length);
-//     currentQuestion = unanswered_quest[index];
-//     question.innerText = currentQuestion.question;
+    // show a random question 
+    const index = Math.floor(Math.random() * num_question + 1);
+    console.log("before fetch");
+    fetch(`/quiz/${index}`)
+    .then(response => response.json())
+    .then(json => {
+        currentQuestion = {
+            question: json.question[0].question,
+            choice1: json.choices[0],
+            choice2: json.choices[1],
+            choice3: json.choices[2],
+            choice4: json.choices[3],
+        };
+        console.log(currentQuestion);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+    console.log("after fetch");
+    question.innerText = currentQuestion.question;
     
-//     // set values for flags
-//     next.disabled = true;
-//     questionShown++;
+    // set values for flags
+    next.disabled = true;
+    questionShown++;
 
-//     // update info section
-//     setcounter(questionShown);
-//     updateProgess(questionShown);
+    // update info section
+    setcounter(questionShown);
+    updateProgess(questionShown);
 
-//     // show the choices for the question 
-//     answers.forEach((ans) => {
-//         ans.lastElementChild.innerText = currentQuestion.answers[ans.dataset['number']].text;
-//     });
+    // show the choices for the question 
+    answers.forEach((ans) => {
+        ans.lastElementChild.innerText = currentQuestion.answers[ans.dataset['number']].text;
+    });
 
-//     // delete the shown question from the array 
-//     unanswered_quest.splice(index, 1);
-//     ready_ans = true;
+    // delete the shown question from the array 
+    unanswered_quest.splice(index, 1);
+    ready_ans = true;
 
-// }
+}
 
 // function addListenerToAnswer(ans) {
 //     ans.addEventListener('click', (event) => {
@@ -124,57 +150,4 @@ console.log(numQuest.innerText);
 //     nextQuestion();
 // } 
 
-// function startQuiz() {
-//     quiz_score = 0;
-//     unanswered_quest = [...questions]; /* spread opeator: make a copy of the array */
-//     nextQuestion();
-//     answers.forEach(addListenerToAnswer);
-//     next.addEventListener('click', eventForNext);
-//     quiz.classList.remove('hide');
-//     loader.classList.add('hide');
-// }
 
-// function getOnlineQuestion(loaded_quest) {
-//     // the questions in Open Trivia Database is coded in HTML
-//     // these lines change some html codes to usual string
-//     let refined_quest = loaded_quest.question.replaceAll('&quot;', '"');
-//     refined_quest = refined_quest.replaceAll('&#039;', "'");
-//     const question = {
-//         question: refined_quest,
-//         answers: []
-//     };
-
-//     // load answers 
-//     const loaded_answers = [...loaded_quest.incorrect_answers];
-//     const correct_index = Math.floor(Math.random() * 4);
-//     loaded_answers.splice(correct_index, 0, loaded_quest.correct_answer);
-
-//     const answers = [];
-    
-//     loaded_answers.forEach((ans, index) => {
-//         let refined_ans = ans.replaceAll('&quot;', '"');
-//         refined_ans = refined_ans.replaceAll('&#039;', "'");
-//         const choice = {
-//             text: refined_ans,
-//             correct: false
-//         };
-
-//         if (index == correct_index) {
-//             choice['correct'] = true;
-//         }
-//         answers.push(choice);
-//     })
-//     question['answers'] = answers;
-//     return question;
-// } 
-
-// // fetch questions from the api and start the quiz
-// fetch("https://opentdb.com/api.php?amount=20&category=19&type=multiple")
-// .then(response => response.json())
-// .then((load_quests) => {
-//     questions = load_quests.results.map(getOnlineQuestion);
-//     startQuiz();
-// })
-// .catch((e) => {
-//     console.error(e);
-// })

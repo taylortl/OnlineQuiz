@@ -3,7 +3,7 @@ const connection = require('./database/mysql.js');
 const router = express.Router();
 
 /* GET for quiz/user_id/random_id (first in and next button click) */ 
-router.get("/:user_id/:ques_id", (req, res) => {
+router.get("/:ques_id", (req, res) => {
   // get question with given id = random_id
   let query = `select question from questions where id=${req.params.ques_id};`;
   let question = null;
@@ -20,7 +20,7 @@ router.get("/:user_id/:ques_id", (req, res) => {
       if (err) throw err;
       console.log("Choices fetched from database");
       console.log(result);
-      question = result;
+      choices = result;
 
       // pass to client
       return res.json({question: question, choices : choices});
@@ -29,14 +29,23 @@ router.get("/:user_id/:ques_id", (req, res) => {
 })
 
 router.get("/", (req, res) => {
-  const query = 'select count(*) from questions';
-  let numQuest = null;
+  let query = 'select count(*) from questions';
+  let numQuest = null, userID = null;
   connection.query(query, (err, result) => {
     if (err) throw err;
     console.log("Number of questions fetched from database:");
     numQuest = JSON.parse(JSON.stringify(result));
     numQuest = numQuest[0]["count(*)"].toString();
     console.log(numQuest);
+
+    // query = 'select count(*) from users';
+    // connection.query(query, (err, result) => {
+    //   console.log("User ID fetched from database:");
+    //   userID = JSON.parse(JSON.stringify(result));
+    //   userID = userID[0]["count(*)"].toString();
+    //   console.log(userID);
+    // });
+    
     return res.render('quiz.ejs', {numQuestion: numQuest});
  });
 })
@@ -57,7 +66,7 @@ router.post("/:user_id/:ques_id",  (req, res) => {
     connection.query(query, (err) => {
       if (err) throw err;
       console.log("Updated information about the correctness");
-      
+
       // get the new random_id (pass from request query)
       // redirect to quiz/user_id/new_random_id
       res.redirect(`/${req.params.user_id}/${req.query.random_id}`);
