@@ -2,7 +2,7 @@ const express = require('express');
 const connection = require('./database/mysql.js');
 const router = express.Router();
 
-/* GET for quiz/user_id/random_id (first in and next button click) */ 
+/* GET for quiz/random_id (first in and next button click) */ 
 router.get("/:ques_id", (req, res) => {
   // get question with given id = random_id
   let query = `select question from questions where id=${req.params.ques_id};`;
@@ -74,5 +74,5 @@ router.post("/:user_id/:ques_id",  (req, res) => {
   });
 })
 
-
+ 
 module.exports = router;
