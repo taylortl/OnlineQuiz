@@ -4,7 +4,8 @@
 This version is not RESTful, it has no involvement of making http request to the database. Instead, this version only uses the Window Storage API (local storage) and it will only store the most recent 10 users / students. Because this version does not fetch data from mysql database, the questions are all fetched and selected from Open Trivia Database. On top of that, only the scores the users are saved to the local storage.
 
 ## Appearance
-There is no difference in the appearance when comparing to the RESTful version.
+There is no difference in the appearance when comparing to the RESTful version and is available in the link below:\
+https://taylortl.github.io/online-quiz/index.html
 
 **Home Page**\
 <img width="500" alt="image" src="https://user-images.githubusercontent.com/91409130/182086208-1b3592b9-863d-49ac-afa1-166a96cbeefd.png">\
