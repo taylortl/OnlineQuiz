@@ -6,7 +6,7 @@ This is an online quiz application for my tutoring part time. I found marking th
 At this Stage, the questions are all fetched and selected from Open Trivia Database. I will be implementing a tutor-side of the quiz app, which allows tutor to input their desired questions and the student-side can be updated with the lastest practices.
 
 ## Hosted Website on GitHub
-https://taylortl.github.io/OnlineQuiz/index.html \
+https://taylortl.github.io/online-quiz/ \
 <img width="278" alt="image" src="https://user-images.githubusercontent.com/91409130/168538504-1d7dce58-ccca-4021-9bd1-22d5d1c04ee1.png">
 
 ## Implemented Using:
