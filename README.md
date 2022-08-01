@@ -1,13 +1,14 @@
-# Online Quiz Application
+# Online Quiz Application - Simple
 
-## About this application
-This is an online quiz application for my tutoring part time. I found marking the practice tests time consuming, so I intented to create an application for me to upload questions and my students can practise as much as they want. 
+## About this version
+This version is not RESTful, it has no involvement of making http request to the database. Instead, this version only uses the Window Storage API (local storage) and it will only store the most recent 10 users / students. Because this version does not fetch data from mysql database, the questions are all fetched and selected from Open Trivia Database. On top of that, only the scores the users are saved to the local storage.
 
-At this Stage, the questions are all fetched and selected from Open Trivia Database. I will be implementing a tutor-side of the quiz app, which allows tutor to input their desired questions and the student-side can be updated with the lastest practices.
-
-## Hosted Website on GitHub
-https://taylortl.github.io/online-quiz/ \
-<img width="278" alt="image" src="https://user-images.githubusercontent.com/91409130/168538504-1d7dce58-ccca-4021-9bd1-22d5d1c04ee1.png">
+## Appearance
+There is no difference in the appearance when comparing to the RESTful version.
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/91409130/182086208-1b3592b9-863d-49ac-afa1-166a96cbeefd.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/91409130/182086404-2db7a9d0-8f83-4f57-807b-b24b9cc41882.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/91409130/182086503-a7f2a8a3-013f-42da-9290-870c15690c66.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/91409130/182086645-539e6885-d0ee-459f-8f72-e92738f2019c.png">
 
 ## Implemented Using:
 - HTML
