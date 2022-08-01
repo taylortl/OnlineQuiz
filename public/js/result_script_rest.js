@@ -1,0 +1,43 @@
+// get elements from document
+const save = document.getElementById('save-but');
+const score = document.getElementById('score');
+const username = document.getElementById('user');
+const display = document.getElementById('display');
+const loader = document.getElementById('loader');
+
+// get info from local storage
+const quiz_score = localStorage.getItem('score');
+const user_id = localStorage.getItem('user');
+
+// save result to database 
+function saveResult() {
+    const result = {
+        score: quiz_score,
+        name: username.value,
+    };
+    
+    record.push(result);
+
+    if (Object.keys(record).length > 10) {
+        record.splice(0, Object.keys(record).length - 10);
+    }
+    localStorage.setItem('record', JSON.stringify(record));
+    
+    save.classList.add('hide');
+    username.classList.add('hide');
+}
+
+function init() {
+    // unlock the save button if username is typed
+    username.addEventListener('keyup', () => {
+        save.disabled = !username.value;
+    })
+    
+    // get the score of the quiz
+    score.innerText = quiz_score;
+    save.addEventListener('click', saveResult);
+    display.classList.remove('hide');
+    loader.classList.add('hide');
+}
+
+init();

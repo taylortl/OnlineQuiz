@@ -46,27 +46,41 @@ function updateProgess(number) {
 
 function nextQuestion() {
     // check if end quiz 
+    console.log(questionShown);
     if (unanswered_quest.length == 0 || questionShown >= MAX_QUEST){
         quiz_score = parseInt((quiz_score / (MAX_QUEST * 10)) * 100);
 
-        // TODO: change local storage to post request
-
-        // save the quiz score of the user 
+        // use local storage as a temp storage for result page
         localStorage.setItem('score', quiz_score);
-        // replace with fetch result 
-        return window.location.assign('../result_page/result.html');
+        localStorage.setItem('user', user_id);
+
+        // save the quiz score of the user
+        const options = {
+            method: 'POST'
+        };
+        fetch(`/result/${quiz_score}/${user_id}`, options )
+        .then( response => response.json() )
+        .then( response => {
+            console.log(response.message);
+
+            // replace with fetch result 
+            return window.location.assign('../result');
+        } )
+        .catch((error) => {
+            console.error('Error:', error);
+        }); 
     } 
     
     // get a random index of an unanswered question
     current_index = Math.floor(Math.random() * unanswered_quest.length);
-
+    
     // fetch the question from the database
-    fetch(`/quiz/${unanswered_quest[current_index]}`)
+    fetch(`/quiz/${parseInt(unanswered_quest[current_index]) + 1}`)
     .then(response => response.json())
     .then(json => {
         // update the current question
         currentQuestion = {
-            index: unanswered_quest[current_index],
+            index: unanswered_quest[current_index] + 1,
             question: json.question[0].question,
             // ensure the choices are json objects
             choice1: JSON.parse(JSON.stringify(json.choices[0])),
@@ -123,10 +137,7 @@ function addListenerToAnswer(ans) {
         }
 
         // make post request to save user's answer
-        const params = {
-            user: user_id,
-            choice: currentQuestion[`choice${selected_ans}`].id
-        };
+
         const options = {
             method: 'POST'
         };

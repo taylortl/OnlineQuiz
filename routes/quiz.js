@@ -5,7 +5,7 @@ const router = express.Router();
 /* GET for quiz/random_id (first in and next button click) */ 
 router.get("/:ques_id", (req, res) => {
   // get question with given id = random_id
-  let query = `select question from questions where id=${req.params.ques_id};`;
+  let query = `select question from questions where id=${req.params.ques_id}`;
   let question = null;
   connection.query(query, (err, result) => {
      if (err) throw err;
@@ -14,7 +14,7 @@ router.get("/:ques_id", (req, res) => {
      question = result;
      
      // get choices for the corresponding question
-     query = `select id, choice, is_answer from question_choices where question_id=${req.params.ques_id};`;
+     query = `select id, choice, is_answer from question_choices where question_id=${req.params.ques_id}`;
      let choices =  null;
      connection.query(query, (err, result) => {
       if (err) throw err;
@@ -60,13 +60,13 @@ router.post("/:ques_id/:user/:choice",  (req, res) => {
   // get the choice id  (pass from request query)
   // save the choice of the user to connection
   let query = `insert into user_answers (user_id, question_id, choice_id) 
-               values(${req.params.user},${req.params.ques_id},${req.params.choice});`;
+               values(${req.params.user},${req.params.ques_id},${req.params.choice})`;
   connection.query(query, (err) => {
     if (err) throw err;
     console.log("User's answer saved into database");
     query = `update user_answers set is_correct = 
           (select is_answer from question_choices where question_id = ${req.params.ques_id} and id = ${req.params.choice})
-          where user_id = ${req.params.user} and question_id = ${req.params.ques_id} and choice_id = ${req.params.choice};`;
+          where user_id = ${req.params.user} and question_id = ${req.params.ques_id} and choice_id = ${req.params.choice}`;
     connection.query(query, (err) => {
       if (err) throw err;
       console.log("Updated information about the correctness");
