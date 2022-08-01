@@ -21,9 +21,6 @@ app.get('/', (req, res) => {
     res.render('index');
 })
 
-app.get('/get_record', (req, res) => {
-    res.render('record');
-})
 
 
 app.listen(3000);

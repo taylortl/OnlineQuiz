@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 // post request to save the score of the user
 router.post("/save-score/:score/:user",  (req, res) => {
     // save the choice of the user to connection
-    let query = `update users set score = ${req.params.score} where id=${req.params.user}`;
+    let query = `update users set score=${req.params.score} where id=${req.params.user}`;
     connection.query(query, (err) => {
       if (err) throw err;
       console.log("User's score updated");
@@ -21,7 +21,7 @@ router.post("/save-score/:score/:user",  (req, res) => {
 // post request to save the name of the user
 router.post("/save-username/:username/:user",  (req, res) => {
     // save the choice of the user to connection
-    let query = `update users set username = "${req.params.username}" where id=${req.params.user}`;
+    let query = `update users set username="${req.params.username}" where id=${req.params.user}`;
     connection.query(query, (err) => {
       if (err) throw err;
       console.log("User's username updated");
