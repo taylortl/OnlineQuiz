@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz App - Start Quiz</title>
     <!--attach the style sheets-->
-    <link href="../home_page/home_styles.css" rel="stylesheet">
-    <link href="./quiz_styles.css" rel="stylesheet">
+    <link type="text/css" href="/css/home_styles.css" rel="stylesheet">
+    <link type="text/css" href="/css/quiz_styles.css" rel="stylesheet">
     <!--attach the script-->
-    <script defer src="./quiz_script.js"></script>
+    <script defer src="/js/quiz_script_rest.js"></script>
 </head>
 <body>
     <div class="container">
@@ -17,7 +17,8 @@
         <div id="loader" class="loader-container">
             <div class="loader"></div>
         </div>
-
+        <p id="count" class="hide"><%= numQuestion %></p>
+        <p id="user" class="hide"><%= user %></p>
         <div id="quiz" class="hide center-x flex-column">
             <!--quiz info and progress-->
             <div class="info-container">
