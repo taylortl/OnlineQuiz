@@ -37,39 +37,41 @@ router.get("/", (req, res) => {
     numQuest = JSON.parse(JSON.stringify(result));
     numQuest = numQuest[0]["count(*)"].toString();
     console.log(numQuest);
-
-    // query = 'select count(*) from users';
-    // connection.query(query, (err, result) => {
-    //   console.log("User ID fetched from database:");
-    //   userID = JSON.parse(JSON.stringify(result));
-    //   userID = userID[0]["count(*)"].toString();
-    //   console.log(userID);
-    // });
+    ;
     
-    return res.render('quiz.ejs', {numQuestion: numQuest});
+    query = 'insert into users (username) values("temp")';
+    connection.query(query, (err, result) => {
+      query = 'select id from users where username="temp"';
+      connection.query(query, (err, result) => {
+        query = 'select id from users where username="temp"';
+        console.log("User ID fetched from database:");
+        userID = JSON.parse(JSON.stringify(result));
+        userID = userID[0]["id"].toString();
+        console.log(userID);
+        return res.render('quiz.ejs', {numQuestion: numQuest, user: userID});
+      });
+    });
  });
 })
 
  
-/* POST for  quiz/user_id/random_id (choices click) */
-router.post("/:user_id/:ques_id",  (req, res) => {
+/* POST for  quiz/random_id (choices click) */
+router.post("/:ques_id/:user/:choice",  (req, res) => {
   // get the choice id  (pass from request query)
   // save the choice of the user to connection
   let query = `insert into user_answers (user_id, question_id, choice_id) 
-               values(${req.params.user_id},${req.params.ques_id},${req.query.choice});`;
+               values(${req.params.user},${req.params.ques_id},${req.params.choice});`;
   connection.query(query, (err) => {
     if (err) throw err;
     console.log("User's answer saved into database");
     query = `update user_answers set is_correct = 
-          (select is_answer from question_choices where question_id = ${req.params.ques_id} and id = ${req.query.choice})
-          where user_id = ${req.params.user_id} and question_id = ${req.params.ques_id} and choice_id = ${req.query.choice};`;
+          (select is_answer from question_choices where question_id = ${req.params.ques_id} and id = ${req.params.choice})
+          where user_id = ${req.params.user} and question_id = ${req.params.ques_id} and choice_id = ${req.params.choice};`;
     connection.query(query, (err) => {
       if (err) throw err;
       console.log("Updated information about the correctness");
 
-      // get the new random_id (pass from request query)
-      // redirect to quiz/user_id/new_random_id
-      res.redirect(`/${req.params.user_id}/${req.query.random_id}`);
+      res.json({message: "User's answer saved to database."});
     });
   });
 })
