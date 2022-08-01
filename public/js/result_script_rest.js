@@ -11,17 +11,18 @@ const user_id = localStorage.getItem('user');
 
 // save result to database 
 function saveResult() {
-    const result = {
-        score: quiz_score,
-        name: username.value,
-    };
     
-    record.push(result);
-
-    if (Object.keys(record).length > 10) {
-        record.splice(0, Object.keys(record).length - 10);
-    }
-    localStorage.setItem('record', JSON.stringify(record));
+    const options = {
+        method: 'POST'
+    };
+    fetch(`/result/save-username/${username.value}/${user_id}`, options )
+    .then( response => response.json() )
+    .then( response => {
+        console.log(response.message);
+    } )
+    .catch((error) => {
+        console.error('Error:', error);
+    }); 
     
     save.classList.add('hide');
     username.classList.add('hide');

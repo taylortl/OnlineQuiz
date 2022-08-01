@@ -46,7 +46,6 @@ function updateProgess(number) {
 
 function nextQuestion() {
     // check if end quiz 
-    console.log(questionShown);
     if (unanswered_quest.length == 0 || questionShown >= MAX_QUEST){
         quiz_score = parseInt((quiz_score / (MAX_QUEST * 10)) * 100);
 
@@ -58,7 +57,7 @@ function nextQuestion() {
         const options = {
             method: 'POST'
         };
-        fetch(`/result/${quiz_score}/${user_id}`, options )
+        fetch(`/result/save-score/${quiz_score}/${user_id}`, options )
         .then( response => response.json() )
         .then( response => {
             console.log(response.message);
@@ -69,50 +68,50 @@ function nextQuestion() {
         .catch((error) => {
             console.error('Error:', error);
         }); 
-    } 
-    
-    // get a random index of an unanswered question
-    current_index = Math.floor(Math.random() * unanswered_quest.length);
-    
-    // fetch the question from the database
-    fetch(`/quiz/${parseInt(unanswered_quest[current_index]) + 1}`)
-    .then(response => response.json())
-    .then(json => {
-        // update the current question
-        currentQuestion = {
-            index: unanswered_quest[current_index] + 1,
-            question: json.question[0].question,
-            // ensure the choices are json objects
-            choice1: JSON.parse(JSON.stringify(json.choices[0])),
-            choice2: JSON.parse(JSON.stringify(json.choices[1])),
-            choice3: JSON.parse(JSON.stringify(json.choices[2])),
-            choice4: JSON.parse(JSON.stringify(json.choices[3])),
-        };
+    } else {
+        // get a random index of an unanswered question
+        current_index = Math.floor(Math.random() * unanswered_quest.length);
+        
+        // fetch the question from the database
+        fetch(`/quiz/${parseInt(unanswered_quest[current_index]) + 1}`)
+        .then(response => response.json())
+        .then(json => {
+            // update the current question
+            currentQuestion = {
+                index: unanswered_quest[current_index] + 1,
+                question: json.question[0].question,
+                // ensure the choices are json objects
+                choice1: JSON.parse(JSON.stringify(json.choices[0])),
+                choice2: JSON.parse(JSON.stringify(json.choices[1])),
+                choice3: JSON.parse(JSON.stringify(json.choices[2])),
+                choice4: JSON.parse(JSON.stringify(json.choices[3])),
+            };
 
-        // show the question fetched 
-        question.innerText = currentQuestion.question;
+            // show the question fetched 
+            question.innerText = currentQuestion.question;
 
-        // set values for flags
-        next.disabled = true;
-        questionShown++;
+            // set values for flags
+            next.disabled = true;
+            questionShown++;
 
-        // update info section on the page
-        setcounter(questionShown);
-        updateProgess(questionShown);
+            // update info section on the page
+            setcounter(questionShown);
+            updateProgess(questionShown);
 
-        // show the choices for the question 
-        answers.forEach((ans) => {
-            // ans.dataset['number'] is the "tag" of the choice buttons (0-3)
-            ans.lastElementChild.innerText = currentQuestion[`choice${parseInt(ans.dataset['number']) + 1}`].choice;
+            // show the choices for the question 
+            answers.forEach((ans) => {
+                // ans.dataset['number'] is the "tag" of the choice buttons (0-3)
+                ans.lastElementChild.innerText = currentQuestion[`choice${parseInt(ans.dataset['number']) + 1}`].choice;
+            });
+
+            // delete the shown question from the array 
+            unanswered_quest.splice(current_index, 1);
+            ready_ans = true;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
         });
-
-        // delete the shown question from the array 
-        unanswered_quest.splice(current_index, 1);
-        ready_ans = true;
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+    }
 }
 
 function addListenerToAnswer(ans) {
@@ -145,20 +144,17 @@ function addListenerToAnswer(ans) {
         .then( response => response.json() )
         .then( response => {
             console.log(response.message);
+            // change the theme 
+            selected_element.classList.add(classToAdd);
+            document.body.classList.add(classToAdd);
+
+            // set values for flags
+            next.disabled = false;
+            ready_ans = false;
         } )
         .catch((error) => {
             console.error('Error:', error);
         });
-
-        
-    
-        // change the theme 
-        selected_element.classList.add(classToAdd);
-        document.body.classList.add(classToAdd);
-
-        // set values for flags
-        next.disabled = false;
-        ready_ans = false;
     });
 } 
 
