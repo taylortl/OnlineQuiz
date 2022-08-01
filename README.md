@@ -5,6 +5,7 @@ This version is not RESTful, it has no involvement of making http request to the
 
 ## Appearance
 There is no difference in the appearance when comparing to the RESTful version.
+
 **Home Page**\
 <img width="500" alt="image" src="https://user-images.githubusercontent.com/91409130/182086208-1b3592b9-863d-49ac-afa1-166a96cbeefd.png">\
 **Record Page**\
